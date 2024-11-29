@@ -1,0 +1,9 @@
+{
+  "name": "podcast-reader",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/podcast-reader/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project podcast-reader --web",
+  "targets": {}
+}
