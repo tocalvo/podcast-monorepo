@@ -56,4 +56,9 @@ export default defineConfig({
       provider: 'v8',
     },
   },
+  // resolve:{
+  //   alias:{
+  //     '../../hooks': 'src/hooks/__mocks__/index.ts'
+  //   }
+  // }
 });

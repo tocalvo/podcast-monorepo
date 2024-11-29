@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  flex: 1 1 175px;
+  max-width: 175px;
+  flex-direction: column;
+  border-radius: 3%;
+  align-items: center;
+  margin-bottom: 80px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 0px 10px;
+  cursor: pointer;
+}
+
+.image {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  width: 100px;
+  margin-top: -30px;
+  /* to improve white background images contrast */
+  border: 0.1px solid lightgrey;
+}
+
+.title {
+  text-align: center;
+  font-weight: 700;
+}
+
+.artist {
+  text-align: center;
+  color: dimgrey;
+}

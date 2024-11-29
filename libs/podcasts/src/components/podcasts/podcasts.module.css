@@ -1,7 +1,28 @@
-/*
- * Replace this with your own classes
- *
- * e.g.
- * .container {
- * }
-*/
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.number {
+  background-color: #4682b4;
+  padding: 0px 8px;
+  color: white;
+  border-radius: 2%;
+}
+.filter {
+  margin-left: 10px;
+  border: 1px solid grey;
+}
+.podcasts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}

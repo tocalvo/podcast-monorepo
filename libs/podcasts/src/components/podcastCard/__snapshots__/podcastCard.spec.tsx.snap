@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PodcastCard > should render the content 1`] = `
+<div>
+  <a
+    aria-label="Ir al detalle del podcast"
+    class="_card_aabbb0"
+    data-discover="true"
+    data-testid="podcast-card"
+    href="/podcast/1535809341"
+  >
+    <img
+      alt="podcast logo"
+      class="_image_aabbb0"
+      src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts113/v4/f2/21/fa/f221fabd-017f-5125-633b-f1fe4f39802a/mza_182995249085044287.jpg/55x55bb.png"
+    />
+    <p
+      class="_title_aabbb0"
+    >
+      The Joe Budden Podcast
+    </p>
+    <p
+      class="_artist_aabbb0"
+    >
+      Author: 
+      The Joe Budden Network
+    </p>
+  </a>
+</div>
+`;
