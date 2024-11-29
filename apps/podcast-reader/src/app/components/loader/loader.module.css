@@ -1,0 +1,33 @@
+.square {
+  width: 20px;
+  height: 20px;
+  background-color: #add8e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: rotate 5s linear infinite;
+}
+.big-circle {
+  width: 20px;
+  height: 20px;
+  background-color: #4682b4;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.little-circle {
+  width: 15px;
+  height: 15px;
+  background-color: #1c3f5c;
+  border-radius: 50%;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
