@@ -1,0 +1,14 @@
+.header {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name {
+  color: #4682b4;
+}
+

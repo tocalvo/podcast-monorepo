@@ -1,11 +1,19 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
+import { Route, Routes } from 'react-router';
+import Header from './components/header/header';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="podcast-reader" />
+      <Header />
+      <Routes>
+        <Route path="/" element={<p>podcasts</p>} />
+
+        <Route path="/podcast/:podcastId" element={<p>podcastdetail</p>} />
+        <Route
+          path="/podcast/:podcastId/episode/:episodeId"
+          element={<p>episode detail</p>}
+        />
+      </Routes>
     </div>
   );
 }
