@@ -5,5 +5,29 @@
   "projectType": "application",
   "tags": [],
   "// targets": "to see all targets run: nx show project podcast-reader --web",
-  "targets": {}
+  "targets": {
+    "createenv": {
+      "//dependsOn": ["build", "^build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "terraform init",
+          "terraform apply -auto-approve"
+        ],
+        "cwd": "apps/podcast-reader/deploy/terraform"
+      }
+    },
+    "deploy": {
+      "//dependsOn": ["createenv", "^createenv"],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cp apps/podcast-reader/deploy/package.json dist/apps/podcast-reader/package.json",
+          "cp apps/podcast-reader/deploy/package-lock.json dist/apps/podcast-reader/package-lock.json",
+          "cp apps/podcast-reader/deploy/server.js dist/apps/podcast-reader/server.js",
+          "gcloud functions deploy podcast-app --gen2 --source=dist/apps/podcast-reader --entry-point=handleHTTP --trigger-http --project=principal-442619 --region=europe-southwest1"
+        ]
+      }
+    }
+  }
 }
