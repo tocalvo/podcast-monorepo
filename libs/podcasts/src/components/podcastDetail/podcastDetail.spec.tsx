@@ -71,7 +71,12 @@ describe('PodcastDetail', () => {
     const contentCells = getAllByRole2('cell');
 
     expect(contentCells.length).toBe(3);
-    expect(contentCells[0].textContent).toBe('Episode 778 | "Bottom Of The 9th"');
+    expect(contentCells[0].querySelector('a')?.getAttribute('href')).toBe(
+      '/podcast/1535809341/episode/1000677977070'
+    );
+    expect(contentCells[0].textContent).toBe(
+      'Episode 778 | "Bottom Of The 9th"'
+    );
     expect(contentCells[1].textContent).toBe('08/07/1987');
     expect(contentCells[2].textContent).toBe('12:00');
   });
