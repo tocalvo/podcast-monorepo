@@ -1,101 +1,124 @@
-# Org
+# **Podcast Monorepo**
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+**URL:** [Podcast App](https://podcast-app-u6fxzaqbqq-no.a.run.app/)
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+---
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## **Estructura general**
 
-## Run tasks
+Este proyecto es un monorepo creado con **Nx**, diseñado para tener una organización clara mediante librerías separadas por dominios y aplicaciones. Además, permite homogeneizar procesos como **build**, **test**, **deploy**, **pipelines** y **versionado de librerías**.
 
-To run the dev server for your app, use:
+- **Optimización**: 
+  - Construye o ejecuta tests/linter solo para los cambios realizados en el código.
+  - Con una caché remota, reduce tiempos de compilación en local y en los pipelines de CI.
 
-```sh
-npx nx serve podcast-reader
+- **Flexibilidad tecnológica**:
+  - Facilita migraciones entre frameworks (por ejemplo, de React a Next.js) y reutilización de componentes.
+  - Simplifica la adopción de nuevas tecnologías.
+
+- **Eficiencia organizativa**:
+  - Permite dividir la aplicación en pequeñas apps según área o equipo, compartiendo componentes y gestionadas de forma unificada.
+  - Es posible redirigir tráfico por URL hacia proyectos específicos, desplegándolos juntos desde el mismo repositorio.
+
+---
+
+## **Estructura de carpetas**
+
+Dentro de cada librería (según dominio), se organiza así:
+- `/components`: Componentes reutilizables.
+- `/hooks`: Hooks personalizados.
+- `/models`: Modelos de datos.
+- `/utils`: Utilidades y helpers.
+
+**Temas de diseño:**
+- Diseño con **CSS puro** por requerimiento (suelo usar una librería de componentes y un tema en una librería).
+- Estructura con **Flexbox** para facilitar la adaptación entre mobile y desktop.
+
+---
+
+
+## **Componentes**
+
+### **Librería Podcasts**
+- **Contenedores**:
+  - `podcasts`: Vista principal de podcasts.
+  - `podcastDetail`: Detalle de un podcast.
+  - `episodeDetail`: Detalle de un episodio.
+- **Componentes**:
+  - `podcastCard`: Tarjeta de podcast en el listado.
+  - `podcastBar`: Barra lateral reutilizable en contenedores.
+
+### **Aplicación**
+Componentes acoplados directamente a la aplicación (en este caso a modo de ejemplo):
+- `header`
+- `loader`
+
+---
+
+## **Herramientas principales**
+
+### **Vite**
+- Usado como constructor rápido y eficiente para React. Salvo necesidad de plugins no actualizados lo prefiero a webpack por su velocidad en cuanto crece mucho el repositorio.
+
+### **TanStack Query**
+- Simplifica el almacenamiento y la persistencia de datos. Se crean hooks para manejar peticiones con un tiempo de vida específico.
+- Por el tamaño de la app y no tener muchos datos derivados que persistir o compartir, no he usado contextapi ni Redux ni Zustand.
+
+### **Vitest**
+- Framework de testing unitario rápido y ligero.
+
+### **Playwright**
+- Herramienta para pruebas E2E muy extendida, lo que más me gusta a la hora de seleccionarla es su extensión para vscode que permite acelerar mucho el desarrollo de tests por su generación de código, su compatibilidad y fácil integración con **Cucumber.js** para soportar features escritas en Gherkin.
+
+---
+
+## **Comandos habituales**
+
+### **Comandos generales para el monorepo**
+Se pueden ejecutar comandos para todo el monorepo con "nx run-many"
+Por ejemplo linter o tests en toda la aplicación con:
+```bash
+# Ejecutar linter o tests en todas las aplicaciones
+nx run-many -t=lint
+nx run-many -t=test
 ```
 
-To create a production bundle:
+### **Comandos específicos para una aplicación**
+Se usa la sintaxis de "nx <comando> <aplicación>" por ejemplo:
 
-```sh
-npx nx build podcast-reader
+```bash
+# Ejecutar pruebas E2E
+nx e2e podcast-reader-e2e
+
+# Modo desarrollo con live reloading
+nx serve podcast-reader
+
+# Crear entorno para despliegue
+nx createenv podcast-reader
+
+# Desplegar aplicación
+nx deploy podcast-reader
 ```
 
-To see all available targets to run for a project, run:
+---
+## **Despliegue**
 
-```sh
-npx nx show project podcast-reader
-```
+### **Cloud Functions (GCP)**
+- **Requisitos**:
+  1. [Terraform](https://www.terraform.io/)
+  2. [Gcloud cli](https://cloud.google.com/sdk/docs/install)
+- **Pasos**:
+  1. Crear entorno con `nx createenv podcast-reader` cambiando las variables de terraform.
+  2. Desplegar con `nx deploy podcast-reader`.
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+- **Ventajas**:
+El uso de cloud y su escritura mediante un lenguaje declarativo como terraform permite un mayor control de la infraestructura, su reproducibilidad y añadirlo a un control de versiones como mayores ventajas.
+Al ser una web con ficheros estáticos lo mejor sería por precio, disponibilidad y escalabilidad añadirla a un bucket, pero al no tener un dominio propio la he incliudo en una cloud function para aprovechar el tier gratuito y la url que proporcionan gratuitamente.
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### **Alternativas**:
+- Si se cuenta con un clúster Kubernetes (K8s), se puede preparar un Dockerfile para desplegar.
+- Sin embargo, **Cloud Functions o AWS Lambda** suelen ser más económicas para webs ligeras combinadas con un **CDN** y buenas configuraciones de cabeceras HTTP.
 
-## Add new projects
+---
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/react:app demo
-```
-
-To generate a new library, use:
-
-```sh
-npx nx g @nx/react:lib mylib
-```
-
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
-```
-
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Este enfoque asegura **modularidad, escalabilidad y eficiencia en costos**, adaptándose a futuras necesidades de tecnología y equipo.
