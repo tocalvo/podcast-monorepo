@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 20px 10px;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.episodes-container {
+  display: flex;
+  flex: 1 1 500px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  border-radius: 2px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 15px;
+}
+.link {
+  color: dodgerblue;
+}
+.striped-table {
+  text-align: left;
+}
+/* Pintar las filas pares */
+.striped-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Pintar las filas impares */
+.striped-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}

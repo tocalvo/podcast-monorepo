@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router';
 import Header from './components/header/header';
-import { Podcasts } from '@org/podcasts';
+import { PodcastDetail, Podcasts } from '@org/podcasts';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { QueryClient } from '@tanstack/react-query';
@@ -27,7 +27,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<Podcasts />} />
 
-        <Route path="/podcast/:podcastId" element={<p>podcastdetail</p>} />
+        <Route path="/podcast/:podcastId" element={<PodcastDetail />} />
         <Route
           path="/podcast/:podcastId/episode/:episodeId"
           element={<p>episode detail</p>}

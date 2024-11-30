@@ -1,0 +1,45 @@
+.card {
+  display: flex;
+  flex: 1 1 175px;
+  flex-direction: column;
+  border-radius: 2px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 15px;
+}
+@media (min-width: 768px) {
+  .card {
+    max-width: 175px;
+  }
+}
+
+.image-link {
+  text-align: center;
+}
+
+.line {
+  width: 100%;
+  margin: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  align-self: center;
+  aspect-ratio: 1/1;
+  width: 100px;
+  /* to improve white background images contrast */
+  border: 0.1px solid lightgrey;
+}
+
+.title {
+  font-weight: 700;
+}
+.title2 {
+  font-weight: 700;
+  font-size: small;
+}
+
+.italic {
+  font-style: italic;
+  color: grey;
+  font-size: small;
+}
