@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useItunesPodcastDetail, useItunesPodcasts } from '../../hooks';
 import styles from './episodeDetail.module.css';
 import PodcastBar from '../podcastBar/podcastBar';
@@ -12,30 +11,19 @@ type EpisodeDetailParams = {
 export const EpisodeDetail: React.FC = () => {
   const { episodeId, podcastId } = useParams<EpisodeDetailParams>();
 
-  const podcastDetailQuery = useItunesPodcastDetail(podcastId);
+  const { getPodcastResumeById } = useItunesPodcasts();
+  const itunesPodcastResume = getPodcastResumeById(podcastId);
 
-  const episode = useMemo(
-    () =>
-      podcastDetailQuery.data?.results.find(
-        (podcast) => podcast.trackId === parseInt(episodeId || '')
-      ),
-    [podcastDetailQuery.data, episodeId]
-  );
+  const { findEpisodeById } = useItunesPodcastDetail(podcastId);
+  const episode = findEpisodeById(episodeId);
 
-  const itunesPodcastsQuery = useItunesPodcasts();
-  const itunesPodcast = useMemo(() => {
-    return itunesPodcastsQuery.data?.feed.entry.find(
-      (podcast) => podcast.id.attributes['im:id'] === podcastId
-    );
-  }, [itunesPodcastsQuery.data, podcastId]);
-  if (!episode || !itunesPodcast) {
+  if (!episode || !itunesPodcastResume) {
     return; // go to home or 404
   }
-  console.log('epido', episode);
 
   return (
     <div className={styles.container}>
-      <PodcastBar podcast={itunesPodcast} />
+      <PodcastBar podcast={itunesPodcastResume} />
 
       <div className={`${styles['card']} ${styles['episode-container']}`}>
         <h1>

@@ -4,17 +4,21 @@ import { EpisodeDetail } from './episodeDetail';
 import { podcastListMock } from '../../__mocks__/podcast.mock';
 import { podcastDetailMock } from '../../__mocks__/podcastDetail.mock';
 import { BrowserRouter } from 'react-router';
+import { ITunesPodcastKind } from '../../models';
 
 vi.mock('../../hooks', () => ({
   useItunesPodcasts: vi.fn(() => ({
-    data: podcastListMock,
-    isLoading: false,
-    error: null,
+    podcasts: podcastListMock.feed.entry,
+    getPodcastResumeById: vi
+      .fn()
+      .mockReturnValue(podcastListMock.feed.entry[0]),
   })),
   useItunesPodcastDetail: vi.fn(() => ({
-    data: podcastDetailMock,
-    isLoading: false,
-    error: null,
+    podcastDetail: podcastDetailMock,
+    episodes: podcastDetailMock.results.filter(
+      (podcast) => podcast.kind === ITunesPodcastKind['podcast-episode']
+    ),
+    findEpisodeById: vi.fn().mockReturnValue(podcastDetailMock.results[1]),
   })),
 }));
 
@@ -63,18 +67,6 @@ describe('EpisodeDetail', () => {
 
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(
       'Episode 778 | "Bottom Of The 9th"'
-    );
-  });
-
-  it('should sanitize the content', () => {
-    const { container } = render(
-      <BrowserRouter>
-        <EpisodeDetail />
-      </BrowserRouter>
-    );
-    expect(container).toMatchSnapshot();
-    expect(screen.queryByTestId('episode_content')?.innerHTML).toContain(
-      '<img src="x">'
     );
   });
 

@@ -1,40 +1,27 @@
-import { useMemo } from 'react';
 import { useItunesPodcastDetail, useItunesPodcasts } from '../../hooks';
 import styles from './podcastDetail.module.css';
-import { ITunesPodcastKind } from '../../models';
 import PodcastBar from '../podcastBar/podcastBar';
 import { Link, useParams } from 'react-router';
 
 export const PodcastDetail: React.FC = () => {
   const { podcastId } = useParams();
 
-  const itunesPodcastsQuery = useItunesPodcasts();
-  const itunesPodcast = useMemo(() => {
-    return itunesPodcastsQuery.data?.feed.entry.find(
-      (podcast) => podcast.id.attributes['im:id'] === podcastId
-    );
-  }, [itunesPodcastsQuery.data, podcastId]);
+  const { getPodcastResumeById } = useItunesPodcasts();
+  const itunesPodcastResume = getPodcastResumeById(podcastId);
 
-  const podcastDetailQuery = useItunesPodcastDetail(podcastId);
-  const podcastEpisodes = useMemo(() => {
-    return (
-      podcastDetailQuery.data?.results.filter(
-        (podcast) => podcast.kind === ITunesPodcastKind['podcast-episode']
-      ) || []
-    );
-  }, [podcastDetailQuery.data]);
+  const { episodes } = useItunesPodcastDetail(podcastId);
 
-  if (!itunesPodcast) {
+  if (!itunesPodcastResume) {
     return; // redirect to home or to 404
   }
 
   return (
     <div className={styles['container']}>
-      <PodcastBar podcast={itunesPodcast} />
+      <PodcastBar podcast={itunesPodcastResume} />
       <div className={styles['episodes-container']}>
         <div className={styles['card']}>
           <p>
-            <b>Episodes: {podcastEpisodes?.length}</b>
+            <b>Episodes: {episodes?.length}</b>
           </p>
         </div>
         <div className={`${styles['card']} ${styles['striped-table']}`}>
@@ -47,7 +34,7 @@ export const PodcastDetail: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {podcastEpisodes.map((episode, i) => (
+              {episodes.map((episode, i) => (
                 <tr key={i}>
                   <td>
                     <Link

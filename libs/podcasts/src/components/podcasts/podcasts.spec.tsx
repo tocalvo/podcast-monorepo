@@ -6,9 +6,10 @@ import { podcastListMock } from '../../__mocks__/podcast.mock';
 
 vi.mock('../../hooks', () => ({
   useItunesPodcasts: vi.fn(() => ({
-    data: podcastListMock,
-    isLoading: false,
-    error: null,
+    podcasts: podcastListMock.feed.entry,
+    getPodcastResumeById: vi
+      .fn()
+      .mockReturnValue(podcastListMock.feed.entry[0]),
   })),
 }));
 

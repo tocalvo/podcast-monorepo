@@ -3,18 +3,23 @@ import { render, screen, within } from '@testing-library/react';
 import { PodcastDetail } from './podcastDetail';
 import { podcastListMock } from '../../__mocks__/podcast.mock';
 import { podcastDetailMock } from '../../__mocks__/podcastDetail.mock';
+
 import { BrowserRouter } from 'react-router';
+import { ITunesPodcastKind } from '../../models';
 
 vi.mock('../../hooks', () => ({
   useItunesPodcasts: vi.fn(() => ({
-    data: podcastListMock,
-    isLoading: false,
-    error: null,
+    podcasts: podcastListMock.feed.entry,
+    getPodcastResumeById: vi
+      .fn()
+      .mockReturnValue(podcastListMock.feed.entry[0]),
   })),
   useItunesPodcastDetail: vi.fn(() => ({
-    data: podcastDetailMock,
-    isLoading: false,
-    error: null,
+    podcastDetail: podcastDetailMock,
+    episodes: podcastDetailMock.results.filter(
+      (podcast) => podcast.kind === ITunesPodcastKind['podcast-episode']
+    ),
+    findEpisodeById: vi.fn().mockReturnValue(podcastDetailMock.results[1]),
   })),
 }));
 

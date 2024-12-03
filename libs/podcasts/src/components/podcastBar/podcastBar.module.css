@@ -1,6 +1,6 @@
 .card {
   display: flex;
-  flex: 1 1 175px;
+  flex: 1 1 250px;
   flex-direction: column;
   border-radius: 2px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -8,7 +8,7 @@
 }
 @media (min-width: 768px) {
   .card {
-    max-width: 175px;
+    max-width: 250px;
   }
 }
 
@@ -42,4 +42,5 @@
   font-style: italic;
   color: grey;
   font-size: small;
+  word-break: break-word;
 }
