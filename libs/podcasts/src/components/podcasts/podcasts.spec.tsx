@@ -57,10 +57,10 @@ describe('Podcasts', () => {
         <Podcasts />
       </BrowserRouter>
     );
-    expect(screen.getByTestId('num-podcasts').textContent).toBe("2");
+    expect(screen.getByTestId('num-podcasts').textContent).toBe('2');
     fireEvent.change(screen.getByPlaceholderText('Filter podcasts...'), {
       target: { value: 'Joe Budden' },
     });
-    expect(screen.getByTestId('num-podcasts').textContent).toBe("1");
+    expect(screen.getByTestId('num-podcasts').textContent).toBe('1');
   });
 });

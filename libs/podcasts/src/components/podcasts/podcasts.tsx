@@ -24,7 +24,9 @@ export const Podcasts: React.FC = () => {
   return (
     <div className={styles['container']}>
       <div className={styles['form']}>
-        <p data-testid="num-podcasts" className={styles['number']}>{filteredEntries.length}</p>
+        <p data-testid="num-podcasts" className={styles['number']}>
+          {filteredEntries.length}
+        </p>
         <input
           className={styles['filter']}
           type="text"

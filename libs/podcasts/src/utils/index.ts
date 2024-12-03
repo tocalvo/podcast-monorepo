@@ -1,6 +1,5 @@
 import { ITunesPodcastEntry } from '../models';
 
-
 export function getImageFromEntry(entry: ITunesPodcastEntry) {
   return entry['im:image']?.length
     ? entry['im:image'][0]

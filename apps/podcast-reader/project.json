@@ -10,10 +10,7 @@
       "//dependsOn": ["build", "^build"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "terraform init",
-          "terraform apply -auto-approve"
-        ],
+        "commands": ["terraform init", "terraform apply -auto-approve"],
         "cwd": "apps/podcast-reader/deploy/terraform"
       }
     },

@@ -58,4 +58,5 @@ export interface ITunesPodcastDetailQueryExtended
 export interface ITunesPodcastDetailExtended extends ITunesPodcastDetail {
   releaseDateLocaleString: string;
   trackTimeMinsSegs: string;
+  sanitizedDescription: string;
 }

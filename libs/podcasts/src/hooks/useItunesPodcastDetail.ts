@@ -5,6 +5,7 @@ import {
 } from '../models';
 import { formatMillisecondsToMinSec } from '../utils';
 import { processAllOriginsResponse, wrapUrl } from '../utils/url-prefixer';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const ITUNES_PODCAST_DETAIL_QUERY = 'ITUNES_PODCAST_DETAIL_QUERY';
 
@@ -24,6 +25,7 @@ export function useItunesPodcastDetail(id?: string) {
         ...parsed,
         results: parsed.results.map((result) => ({
           ...result,
+          sanitizedDescription: DOMPurify.sanitize(result.description || ''),
           releaseDateLocaleString: new Date(
             result.releaseDate
           ).toLocaleDateString(),

@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { useItunesPodcastDetail, useItunesPodcasts } from '../../hooks';
 import styles from './episodeDetail.module.css';
 import PodcastBar from '../podcastBar/podcastBar';
-import DOMPurify from 'isomorphic-dompurify';
 import { useParams } from 'react-router';
+import parse from 'html-react-parser';
 
 type EpisodeDetailParams = {
   episodeId?: string;
@@ -14,15 +14,13 @@ export const EpisodeDetail: React.FC = () => {
 
   const podcastDetailQuery = useItunesPodcastDetail(podcastId);
 
-  const { episode, sanitizedDescription } = useMemo(() => {
-    const episode = podcastDetailQuery.data?.results.find(
-      (podcast) => podcast.trackId === parseInt(episodeId || '')
-    );
-    return {
-      episode,
-      sanitizedDescription: DOMPurify.sanitize(episode?.description || ''),
-    };
-  }, [podcastDetailQuery.data, episodeId]);
+  const episode = useMemo(
+    () =>
+      podcastDetailQuery.data?.results.find(
+        (podcast) => podcast.trackId === parseInt(episodeId || '')
+      ),
+    [podcastDetailQuery.data, episodeId]
+  );
 
   const itunesPodcastsQuery = useItunesPodcasts();
   const itunesPodcast = useMemo(() => {
@@ -33,9 +31,10 @@ export const EpisodeDetail: React.FC = () => {
   if (!episode || !itunesPodcast) {
     return; // go to home or 404
   }
+  console.log('epido', episode);
 
   return (
-    <div className={styles['container']}>
+    <div className={styles.container}>
       <PodcastBar podcast={itunesPodcast} />
 
       <div className={`${styles['card']} ${styles['episode-container']}`}>
@@ -43,10 +42,9 @@ export const EpisodeDetail: React.FC = () => {
           <b>{episode.trackName}</b>
         </h1>
         <p>
-          <i
-            data-testid="episode_content"
-            dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
-          ></i>
+          <i data-testid="episode_content">
+            {parse(episode.sanitizedDescription || '')}
+          </i>
         </p>
         <audio className={styles['audio']} controls>
           <source

@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-      "start": "functions-framework --target=handleHTTP"
+    "start": "functions-framework --target=handleHTTP"
   },
   "dependencies": {
-      "express": "4.21.0",
-      "@google-cloud/functions-framework": "3.4.2"
+    "express": "4.21.0",
+    "@google-cloud/functions-framework": "3.4.2"
   }
 }
