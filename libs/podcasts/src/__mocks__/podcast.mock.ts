@@ -288,13 +288,13 @@ export const podcastListMock = {
       {
         attributes: {
           rel: 'self',
-          href: 'https://itunes.apple.com/us/rss/toppodcasts/limite=100/genre=1310/json',
+          href: 'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json',
         },
       },
     ],
     id: {
       label:
-        'https://itunes.apple.com/us/rss/toppodcasts/limite=100/genre=1310/json',
+        'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json',
     },
   },
 };

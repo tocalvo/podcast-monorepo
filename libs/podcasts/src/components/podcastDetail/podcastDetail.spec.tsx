@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 
-import { PodcastDetail } from './PodcastDetail';
+import { PodcastDetail } from './podcastDetail';
 import { podcastListMock } from '../../__mocks__/podcast.mock';
 import { podcastDetailMock } from '../../__mocks__/podcastDetail.mock';
 import { BrowserRouter } from 'react-router';

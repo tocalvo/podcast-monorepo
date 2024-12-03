@@ -1,11 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
-import { EpisodeDetail } from './EpisodeDetail';
+import { EpisodeDetail } from './episodeDetail';
 import { podcastListMock } from '../../__mocks__/podcast.mock';
 import { podcastDetailMock } from '../../__mocks__/podcastDetail.mock';
 import { BrowserRouter } from 'react-router';
-import { useItunesPodcastDetail } from '../../hooks';
-import { Mock } from 'vitest';
 
 vi.mock('../../hooks', () => ({
   useItunesPodcasts: vi.fn(() => ({

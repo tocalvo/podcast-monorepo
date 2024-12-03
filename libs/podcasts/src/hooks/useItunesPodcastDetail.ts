@@ -4,6 +4,7 @@ import {
   ITunesPodcastDetailQueryExtended,
 } from '../models';
 import { formatMillisecondsToMinSec } from '../utils';
+import { processAllOriginsResponse, wrapUrl } from '../utils/url-prefixer';
 
 export const ITUNES_PODCAST_DETAIL_QUERY = 'ITUNES_PODCAST_DETAIL_QUERY';
 
@@ -12,16 +13,13 @@ export function useItunesPodcastDetail(id?: string) {
     queryKey: [ITUNES_PODCAST_DETAIL_QUERY, id],
     queryFn: async () => {
       const res = await fetch(
-        'https://api.allorigins.win/get?url=' +
-          encodeURIComponent(
-            `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limite=20`
-          )
+        wrapUrl(
+          `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limite=20`
+        )
       );
-      const allOriginsResponse: { contents: string } = await res.json();
-      const parsed: ITunesPodcastDetailQuery = JSON.parse(
-        allOriginsResponse.contents
+      const parsed: ITunesPodcastDetailQuery = await processAllOriginsResponse(
+        res
       );
-
       return {
         ...parsed,
         results: parsed.results.map((result) => ({
