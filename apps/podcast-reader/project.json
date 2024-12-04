@@ -19,7 +19,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "cp apps/podcast-reader/deploy/package.json dist/apps/podcast-reader/package.json",
+          "cp apps/podcast-reader/deploy/package.json.bak dist/apps/podcast-reader/package.json",
           "cp apps/podcast-reader/deploy/package-lock.json dist/apps/podcast-reader/package-lock.json",
           "cp apps/podcast-reader/deploy/server.js dist/apps/podcast-reader/server.js",
           "gcloud functions deploy podcast-app --gen2 --source=dist/apps/podcast-reader --entry-point=handleHTTP --trigger-http --project=principal-442619 --region=europe-southwest1"
