@@ -25,8 +25,8 @@ jobs:
 
       - name: Run affected lint
         run: |
-          npx nx affected --target=lint --parallel
+          npx nx affected --target=test --parallel --base=$(git rev-parse HEAD~1) --head=HEAD
 
       - name: Run affected tests
         run: |
-          npx nx affected --target=test --parallel
+          npx nx affected --target=test --parallel --base=$(git rev-parse HEAD~1) --head=HEAD
