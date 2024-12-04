@@ -30,7 +30,7 @@ jobs:
 
       - name: Run affected lint
         run: |
-          npx nx affected --target=test --parallel --base=$(git rev-parse HEAD~1) --head=HEAD
+          npx nx affected --target=lint --parallel --base=$(git rev-parse HEAD~1) --head=HEAD
 
       - name: Run affected tests
         run: |
