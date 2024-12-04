@@ -3,32 +3,32 @@
 exports[`PodcastDetail > should render successfully 1`] = `
 <div>
   <div
-    class="_container_10c5fc"
+    class="_container_c11367"
   >
     <div
-      class="_card_33fd63"
+      class="_card_152e7e"
       data-testid="podcasts_bar"
     >
       <a
-        class="_image-link_33fd63"
+        class="_image-link_152e7e"
         data-discover="true"
         href="/podcast/1535809341"
       >
         <img
           alt=""
-          class="_image_33fd63"
+          class="_image_152e7e"
           src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts113/v4/f2/21/fa/f221fabd-017f-5125-633b-f1fe4f39802a/mza_182995249085044287.jpg/55x55bb.png"
         />
       </a>
       <hr
-        class="_line_33fd63"
+        class="_line_152e7e"
       />
       <a
         data-discover="true"
         href="/podcast/1535809341"
       >
         <p
-          class="_title_33fd63"
+          class="_title_152e7e"
         >
           The Joe Budden Podcast
         </p>
@@ -38,31 +38,32 @@ exports[`PodcastDetail > should render successfully 1`] = `
         href="/podcast/1535809341"
       >
         <p
-          class="_italic_33fd63"
+          class="_italic_152e7e"
         >
           by 
           The Joe Budden Network
         </p>
       </a>
       <hr
-        class="_line_33fd63"
+        class="_line_152e7e"
       />
       <p
-        class="_title2_33fd63"
+        class="_title2_152e7e"
       >
         Description:
       </p>
       <p
-        class="_italic_33fd63"
+        class="_italic_152e7e"
       >
         Tune into Joe Budden and his friends. Follow along the crazy adventures of these very random friends.
       </p>
     </div>
     <div
-      class="_episodes-container_10c5fc"
+      class="_episodes-container_b3522f"
+      data-testid="podcasts_table"
     >
       <div
-        class="_card_10c5fc"
+        class="_card_b3522f"
       >
         <p>
           <b>
@@ -72,7 +73,7 @@ exports[`PodcastDetail > should render successfully 1`] = `
         </p>
       </div>
       <div
-        class="_card_10c5fc _striped-table_10c5fc"
+        class="_card_b3522f _striped-table_b3522f"
       >
         <table>
           <thead>
@@ -92,7 +93,7 @@ exports[`PodcastDetail > should render successfully 1`] = `
             <tr>
               <td>
                 <a
-                  class="_link_10c5fc"
+                  class="_link_b3522f"
                   data-discover="true"
                   href="/podcast/1535809341/episode/1000677977070"
                 >
@@ -109,7 +110,7 @@ exports[`PodcastDetail > should render successfully 1`] = `
             <tr>
               <td>
                 <a
-                  class="_link_10c5fc"
+                  class="_link_b3522f"
                   data-discover="true"
                   href="/podcast/1535809341/episode/1000677608756"
                 >

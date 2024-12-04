@@ -1,9 +1,11 @@
 import { Route, Routes } from 'react-router';
 import Header from './components/header/header';
-import { EpisodeDetail, PodcastDetail, Podcasts } from '@org/podcasts';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { QueryClient } from '@tanstack/react-query';
+import PodcastsPage from './pages/podcastsPage/podcastsPage';
+import PodcastDetailPage from './pages/podcastDetailPage/podcastDetailPage';
+import EpisodeDetailPage from './pages/episodeDetailPage/episodeDetailPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,12 +27,11 @@ export function App() {
     >
       <Header />
       <Routes>
-        <Route path="/" element={<Podcasts />} />
-
-        <Route path="/podcast/:podcastId" element={<PodcastDetail />} />
+        <Route path="/" element={<PodcastsPage />} />
+        <Route path="/podcast/:podcastId" element={<PodcastDetailPage />} />
         <Route
           path="/podcast/:podcastId/episode/:episodeId"
-          element={<EpisodeDetail />}
+          element={<EpisodeDetailPage />}
         />
       </Routes>
     </PersistQueryClientProvider>

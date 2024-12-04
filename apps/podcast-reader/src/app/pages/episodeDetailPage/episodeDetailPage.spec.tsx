@@ -1,12 +1,15 @@
+import {
+  ITunesPodcastKind,
+  podcastDetailMock,
+  podcastListMock,
+} from '@org/podcasts';
 import { render, screen } from '@testing-library/react';
+import { EpisodeDetailPage } from './episodeDetailPage';
 
-import { EpisodeDetail } from './episodeDetail';
-import { podcastListMock } from '../../__mocks__/podcast.mock';
-import { podcastDetailMock } from '../../__mocks__/podcastDetail.mock';
 import { BrowserRouter } from 'react-router';
-import { ITunesPodcastKind } from '../../models';
 
-vi.mock('../../hooks', () => ({
+vi.mock('@org/podcasts', async () => ({
+  ...(await vi.importActual('@org/podcasts')),
   useItunesPodcasts: vi.fn(() => ({
     podcasts: podcastListMock.feed.entry,
     getPodcastResumeById: vi
@@ -41,7 +44,7 @@ describe('EpisodeDetail', () => {
   it('should render successfully', () => {
     const { baseElement, container } = render(
       <BrowserRouter>
-        <EpisodeDetail />
+        <EpisodeDetailPage />
       </BrowserRouter>
     );
     expect(baseElement).toBeTruthy();
@@ -51,34 +54,19 @@ describe('EpisodeDetail', () => {
   it('should render the podcasts bar', () => {
     render(
       <BrowserRouter>
-        <EpisodeDetail />
+        <EpisodeDetailPage />
       </BrowserRouter>
     );
 
     expect(screen.queryByTestId('podcasts_bar')).toBeTruthy();
   });
-
-  it('should render the episode title', () => {
+  it('should render the episode content', () => {
     render(
       <BrowserRouter>
-        <EpisodeDetail />
+        <EpisodeDetailPage />
       </BrowserRouter>
     );
 
-    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(
-      'Episode 778 | "Bottom Of The 9th"'
-    );
-  });
-
-  it('should render the audio', () => {
-    const { container } = render(
-      <BrowserRouter>
-        <EpisodeDetail />
-      </BrowserRouter>
-    );
-    const audio = container.querySelector('audio');
-    expect(audio?.querySelector('source')?.getAttribute('src')).toBe(
-      'https://verifi.podscribe.com/rss/p/traffic.libsyn.com/secure/jbpod/Joe_Budden_Podcast_778.mp3?dest-id=2422538'
-    );
+    expect(screen.queryByTestId('episode_content')).toBeTruthy();
   });
 });

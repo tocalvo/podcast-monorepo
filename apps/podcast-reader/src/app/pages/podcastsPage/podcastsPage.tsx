@@ -1,9 +1,9 @@
-import { useItunesPodcasts } from '../../hooks';
 import styles from './podcasts.module.css';
-import PodcastCard from '../podcastCard/podcastCard';
-import { useMemo, useState } from 'react';
 
-export const Podcasts: React.FC = () => {
+import { useMemo, useState } from 'react';
+import { PodcastCard, PodcastFilter, useItunesPodcasts } from '@org/podcasts';
+
+export const PodcastsPage: React.FC = () => {
   const { podcasts } = useItunesPodcasts();
 
   const [filter, setFilter] = useState('');
@@ -19,18 +19,11 @@ export const Podcasts: React.FC = () => {
 
   return (
     <div className={styles['container']}>
-      <div className={styles['form']}>
-        <p data-testid="num-podcasts" className={styles['number']}>
-          {filteredEntries.length}
-        </p>
-        <input
-          className={styles['filter']}
-          type="text"
-          placeholder="Filter podcasts..."
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        ></input>
-      </div>
+      <PodcastFilter
+        podcasts={filteredEntries}
+        filterValue={filter}
+        onChangeFilter={setFilter}
+      />
       <div className={styles['podcasts-grid']}>
         {filteredEntries.map((entry, i) => (
           <PodcastCard key={i} podcast={entry} />
@@ -40,4 +33,4 @@ export const Podcasts: React.FC = () => {
   );
 };
 
-export default Podcasts;
+export default PodcastsPage;

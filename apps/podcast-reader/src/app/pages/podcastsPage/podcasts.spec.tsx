@@ -1,10 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import Podcasts from './podcasts';
+import Podcasts from './podcastsPage';
 import { BrowserRouter } from 'react-router';
-import { podcastListMock } from '../../__mocks__/podcast.mock';
+import { podcastListMock } from '@org/podcasts';
 
-vi.mock('../../hooks', () => ({
+vi.mock('@org/podcasts', async () => ({
+  ...(await vi.importActual('@org/podcasts')),
   useItunesPodcasts: vi.fn(() => ({
     podcasts: podcastListMock.feed.entry,
     getPodcastResumeById: vi

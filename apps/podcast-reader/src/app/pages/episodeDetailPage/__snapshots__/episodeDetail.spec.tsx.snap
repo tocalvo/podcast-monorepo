@@ -59,7 +59,8 @@ exports[`EpisodeDetail > should render successfully 1`] = `
       </p>
     </div>
     <div
-      class="_card_b2c8c3 _episode-container_b2c8c3"
+      class="_card_e00809 _episode-content_e00809"
+      data-testid="episode_content"
     >
       <h1>
         <b>
@@ -68,11 +69,20 @@ exports[`EpisodeDetail > should render successfully 1`] = `
       </h1>
       <p>
         <i
-          data-testid="episode_content"
-        />
+          data-testid="episode_content_text"
+        >
+           The latest episode from the Bionic Six starts with a discussion on dressing your kids for school (2:08) before the room learns that Kendrick Lamar dropped a full album titled ‘GNX’ while recording live (23:36). The JBP then goes song by song reacting to the project while also predicting its first week sales (36:14), Ish has a debate about the ‘bottom of the 9th’ mentality (1:04:00), and Jay Leno suffers an injury after he seemingly fell down a hill (1:08:45). Future’s interview with GQ says he felt slighted on ‘Like That’ as he claims he didn’t know there was a beef (1:22:34), Jussie Smollet’s conviction has been overturned (1:39:52), and Joe learns about premeditated murder (1:47:32). Also, Dr. J is hating again (2:13:45), Joe plays an audio trivia game with his co-hosts (2:33:35), the crew wonders whether Kendrick still has more music coming (2:39:45), and much more! 
+ Become a Patron of The Joe Budden Podcast for additional bonus episodes and visual content for all things JBP! Join our Patreon here: www.patreon.com/joebudden 
+ Sleeper Picks:  
+ Joe | Emanny - “Other Side of Love”
+ Ice | Emanny (feat. Joe Budden) - “I Messed Up”
+ Parks | Emanny (feat. Joe Budden) - “Miss Me”
+ Ish | Tiana Major9 - “alone”
+ Melyssa | Justelle - “Saturn’s Moon”
+        </i>
       </p>
       <audio
-        class="_audio_b2c8c3"
+        class="_audio_e00809"
         controls=""
       >
         <source

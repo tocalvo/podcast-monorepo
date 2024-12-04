@@ -11,26 +11,27 @@ export enum ITunesPodcastKind {
 }
 
 export interface ITunesPodcastDetail {
-  artistId: number;
-  artistName: string;
+  artistIds?: number[];
+  artistId?: number;
+  artistName?: string;
   artistViewUrl: string;
   artworkUrl30?: string;
   artworkUrl60?: string;
   artworkUrl100?: string;
   artworkUrl600?: string;
-  collectionCensoredName: string;
-  collectionExplicitness: string;
-  collectionHdPrice: number;
+  collectionCensoredName?: string;
+  collectionExplicitness?: string;
+  collectionHdPrice?: number;
   collectionId: number;
   collectionName: string;
-  collectionPrice: number;
+  collectionPrice?: number;
   collectionViewUrl: string;
   contentAdvisoryRating: string;
   country: string;
-  currency: string;
+  currency?: string;
   feedUrl: string;
-  genreIds: string[];
-  genres: string[];
+  genreIds?: string[];
+  genres: string[] | { name: string; id: string }[];
   shortDescription?: string;
   description?: string;
   episodeUrl?: string;

@@ -1,0 +1,133 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PodcastDetail > should render successfully 1`] = `
+<div>
+  <div
+    class="_container_10c5fc"
+  >
+    <div
+      class="_card_33fd63"
+      data-testid="podcasts_bar"
+    >
+      <a
+        class="_image-link_33fd63"
+        data-discover="true"
+        href="/podcast/1535809341"
+      >
+        <img
+          alt=""
+          class="_image_33fd63"
+          src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts113/v4/f2/21/fa/f221fabd-017f-5125-633b-f1fe4f39802a/mza_182995249085044287.jpg/55x55bb.png"
+        />
+      </a>
+      <hr
+        class="_line_33fd63"
+      />
+      <a
+        data-discover="true"
+        href="/podcast/1535809341"
+      >
+        <p
+          class="_title_33fd63"
+        >
+          The Joe Budden Podcast
+        </p>
+      </a>
+      <a
+        data-discover="true"
+        href="/podcast/1535809341"
+      >
+        <p
+          class="_italic_33fd63"
+        >
+          by 
+          The Joe Budden Network
+        </p>
+      </a>
+      <hr
+        class="_line_33fd63"
+      />
+      <p
+        class="_title2_33fd63"
+      >
+        Description:
+      </p>
+      <p
+        class="_italic_33fd63"
+      >
+        Tune into Joe Budden and his friends. Follow along the crazy adventures of these very random friends.
+      </p>
+    </div>
+    <div
+      class="_episodes-container_68719c"
+      data-testid="podcasts_table"
+    >
+      <div
+        class="_card_68719c"
+      >
+        <p>
+          <b>
+            Episodes: 
+            2
+          </b>
+        </p>
+      </div>
+      <div
+        class="_card_68719c _striped-table_68719c"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Title
+              </th>
+              <th>
+                Date
+              </th>
+              <th>
+                Duration
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  class="_link_68719c"
+                  data-discover="true"
+                  href="/podcast/1535809341/episode/1000677977070"
+                >
+                  Episode 778 | "Bottom Of The 9th"
+                </a>
+              </td>
+              <td>
+                08/07/1987
+              </td>
+              <td>
+                12:00
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  class="_link_68719c"
+                  data-discover="true"
+                  href="/podcast/1535809341/episode/1000677608756"
+                >
+                  Episode 777 | "The Spectrum"
+                </a>
+              </td>
+              <td>
+                08/07/1987
+              </td>
+              <td>
+                12:00
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+`;
