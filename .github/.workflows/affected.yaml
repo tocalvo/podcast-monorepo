@@ -1,0 +1,32 @@
+name: Run Affected Tests
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  affected-tests:
+    name: Run Affected
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22' # Cambia según tu versión de Node.js
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run affected lint
+        run: |
+          npx nx affected --target=lint --parallel
+
+      - name: Run affected tests
+        run: |
+          npx nx affected --target=test --parallel

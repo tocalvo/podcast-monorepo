@@ -7,7 +7,7 @@
   "// targets": "to see all targets run: nx show project podcast-reader --web",
   "targets": {
     "createenv": {
-      "//dependsOn": ["build", "^build"],
+      "dependsOn": ["build", "^build"],
       "executor": "nx:run-commands",
       "options": {
         "commands": ["terraform init", "terraform apply -auto-approve"],
